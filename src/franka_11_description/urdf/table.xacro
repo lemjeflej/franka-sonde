@@ -16,7 +16,7 @@
     </link>
 
     <joint name="table_fixed" type="fixed">
-      <parent link="${parent}"/>
+      <parent link="base"/>
       <child link="table"/>
     </joint>
 
