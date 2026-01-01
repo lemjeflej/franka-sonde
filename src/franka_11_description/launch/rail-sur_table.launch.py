@@ -12,7 +12,7 @@ def generate_launch_description():
             PathJoinSubstitution([
                 FindPackageShare("franka_11_description"),
                 "urdf",
-                "fr3_on_table.xacro"
+                "rail_sur_table.xacro"
             ])
         ]),
         value_type=str
