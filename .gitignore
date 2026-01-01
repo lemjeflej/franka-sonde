@@ -1,0 +1,26 @@
+# ROS2 build folders
+/build/
+/install/
+/log/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# VS Code settings
+.vscode/
+
+# Ignition/Gazebo temporary files
+*.drc
+*.log
+*.gztmp
+*.sdf.backup
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# ===== Logs & temp =====
+*.log
+*.tmp
