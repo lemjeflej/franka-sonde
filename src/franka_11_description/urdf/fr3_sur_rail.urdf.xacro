@@ -1,26 +1,23 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="fr3_on_rail">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="fr3_sur_rail">
 
   <xacro:include filename="$(find franka_description)/robots/fr3/fr3.urdf.xacro"/>
-  <xacro:include filename="$(find franka_11_description)/urdf/rail.xacro"/>
-  <xacro:include filename="$(find franka_11_description)/urdf/table.xacro"/>
+  <xacro:include filename="$(find franka_11_description)/urdf/rail_sur_table.xacro"/>
 
-  <link name="world"/>
-
-  <!-- Environment -->
-  <xacro:table parent="world"/>
-  <xacro:rail parent="table"/>
 
   <!-- Robot -->
-  <xacro:franka_robot
+
+    <xacro:franka_robot
     arm_id="fr3"
+    parent="montage"
+    xyz="0 0 0"
+    rpy="0 0 0"
     joint_limits="${xacro.load_yaml('$(find franka_description)/robots/fr3/joint_limits.yaml')}"
     inertials="${xacro.load_yaml('$(find franka_description)/robots/fr3/inertials.yaml')}"
     kinematics="${xacro.load_yaml('$(find franka_description)/robots/fr3/kinematics.yaml')}"
     accelerometer_config="${xacro.load_yaml('$(find franka_description)/robots/fr3/accelerometers.yaml')}"
     dynamics="${xacro.load_yaml('$(find franka_description)/robots/fr3/dynamics.yaml')}"
-    connected_to="rail_carriage"
-    use_fake_hardware="true"
   />
+
 
 </robot>

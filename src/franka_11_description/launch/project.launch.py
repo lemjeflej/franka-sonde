@@ -20,7 +20,8 @@ from launch_ros.actions import Node
 
 from launch import LaunchContext, LaunchDescription
 from launch.actions import DeclareLaunchArgument, OpaqueFunction
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, Command
+from launch_ros.substitutions import FindPackageShare
 
 
 def robot_state_publisher_spawner(context: LaunchContext, arm_id, load_gripper, ee_id):
@@ -30,7 +31,7 @@ def robot_state_publisher_spawner(context: LaunchContext, arm_id, load_gripper, 
     franka_xacro_filepath = os.path.join(
         get_package_share_directory("franka_11_description"),
         "urdf",
-        "fr3_on_table.xacro",
+        "fr3_on_rail.xacro",
     )
     robot_description = xacro.process_file(
         franka_xacro_filepath, mappings={"hand": load_gripper_str, "ee_id": ee_id_str}
@@ -96,9 +97,13 @@ def generate_launch_description():
             Node(
                 package="rviz2",
                 executable="rviz2",
-                name="rviz2",
-                arguments=["--display-config", rviz_file],
-            ),
+                arguments=["-d", PathJoinSubstitution([
+                FindPackageShare("franka_11_description"),
+                "rviz",
+                "trm.rviz"
+                ])],
+                output="screen"
+            )
         ]
     )
 
