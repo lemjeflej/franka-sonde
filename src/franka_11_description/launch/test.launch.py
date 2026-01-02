@@ -13,7 +13,7 @@ def generate_launch_description():
             PathJoinSubstitution([
                 FindPackageShare("franka_11_description"), 
                 "urdf",
-                "fr3_sur_rail.urdf.xacro"
+                "fr3_sur_rail.xacro"
             ])
         ]),
         value_type=str
@@ -42,6 +42,11 @@ def generate_launch_description():
         Node(
             package="rviz2",
             executable="rviz2",
+            arguments=["-d", PathJoinSubstitution([
+            FindPackageShare("franka_11_description"),
+            "rviz",
+            "trm.rviz"
+            ])],
             output="screen"
         )
     ])
